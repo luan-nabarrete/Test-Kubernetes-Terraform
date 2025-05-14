@@ -16,7 +16,7 @@
 1. Clone este repositório e acesse o diretório:
 
    ```bash
-   git clone <url-do-repo>
+   git clone https://github.com/luan-nabarrete/Test-Kubernetes-Terraform.git
    cd Test-Kubernetes-Terraform
    ```
 
@@ -59,7 +59,7 @@ O script localizado em `modules/ec2/user_data.sh` será executado automaticament
 Ao final do `terraform apply`, os seguintes outputs serão exibidos:
 
 ```
-Apply complete! Resources: X added, 0 changed, 0 destroyed.
+Apply complete! Resources: X added, Y changed, Z destroyed.
 
 Outputs:
 
