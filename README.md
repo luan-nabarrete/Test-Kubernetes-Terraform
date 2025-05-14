@@ -145,3 +145,19 @@ ssh -i modules/ec2/server-key.pem ec2-user@192.163.10.51
 -  O tipo de serviço original era `ClusterIP`, que não permite acesso externo. Ele foi alterado para `NodePort`, permitindo acesso público via IP da EC2 e porta mapeada (ex: `:30080`).
 
 ---
+
+---
+
+## Limitação de recursos dos pods
+
+O arquivo `deployment.yaml` do Helm chart foi atualizado com as diretivas `resources.requests` e `resources.limits` para controlar o uso de CPU e memória dos containers no cluster Kind.
+
+```yaml
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "100m"
+  limits:
+    memory: "128Mi"
+    cpu: "250m"
+```
