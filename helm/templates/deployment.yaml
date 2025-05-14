@@ -16,34 +16,16 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.16
+        - name: {{ .Release.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 80
-          apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Chart.Name }}
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: {{ .Chart.Name }}
-  template:
-    metadata:
-      labels:
-        app: {{ .Chart.Name }}
-    spec:
-      containers:
-        - name: nginx
-          image: nginx:latest
-          ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.containerPort }}
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "100m"
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
             limits:
-              memory: "128Mi"
-              cpu: "250m"
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
 

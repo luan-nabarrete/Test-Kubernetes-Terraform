@@ -9,7 +9,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: 80
-      nodePort: 30080
+      targetPort: {{ .Values.containerPort }}
+      nodePort: {{ .Values.service.nodePort }}
   selector:
     app: {{ .Release.Name }}
