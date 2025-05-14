@@ -4,9 +4,9 @@
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) instalado e configurado com credenciais válidas (`~/.aws/credentials`)  
 - Bucket S3 criado e configurado corretamente no `backend.tf`  
 - Variáveis ajustadas no arquivo `terraform.tfvars`:  
-  - `aws_profile`  
-  - `region`  
-  - `meu_ip`  
+  - `aws_profile`  # Perfil AWS utilizado para criação dos recursos
+  - `region`  # Região onde os recursos serão criados
+  - `meu_ip`  # IP de ORIGEM para acesso SSH ao servidor (acesse meuip.com para saber seu IP de origem)
   - Outras variáveis de infraestrutura, se necessário  
 
 ---
