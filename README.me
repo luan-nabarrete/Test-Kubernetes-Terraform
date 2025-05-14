@@ -1,0 +1,72 @@
+## Pré-requisitos
+
+Terraform instalado;
+AWS CLI instalado e configurado com perfil e credenciais válidas (~/.aws/credentials);
+Ter um bucket S3 criado e referenciado em backend.tf, assim como sua região e o aws_profile que vai ter acesso ao bucket;
+Variáveis ajustadas no terraform.tfvars (como aws_profile, meu_ip, region etc.).
+
+
+
+## Aplicação da infraestrutura e container Kind + Nginx Chart
+
+Após clonar, entre no repositório do projeto e incialize o terraform com o comando:
+
+    terraform init
+
+## (Opcional) Verifique o plano
+
+    terraform plan
+
+## Aplique o plano
+
+    terraform apply
+
+Confirme com "yes" quando solicitado.
+
+
+## Aguarde a criação da EC2
+
+O user_data.sh dentro de modules/ec2/ será executado automaticamente na inicialização da instância, e deve:
+
+1. Instalar dependências (Docker, Kind, kubectl, Helm)
+
+2. Criar o cluster Kind
+
+3. Aplicar o Helm chart com o NGINX
+
+Obs.: A processo todo leva cerca de 5 minutos. Antes disto, a aplicação não estará acessível.
+
+
+
+## Teste de acesso ao Nginx
+
+Quando a infraestrutura terminar de ser aplicada, o output "ec2_public_ip_port" será exibido na tela.
+
+Copie o valor do output e cole no browser. Exemplo:
+
+    Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+    Outputs:
+
+    ec2_public_ip = "192.163.10.51"
+    ec2_public_ip_port = "192.163.10.51:30080"
+
+
+Ou execute:
+
+    curl 3.91.199.234:30080
+
+## Acesso SSH
+
+Foi criada uma chave SSH server-key.pem que é armazenada em modules/ec2/, usada para acesso SSH no servidor.
+
+Para acessar execute o seguinte comando, substituindo [ec2_public_ip] pelo valor do output "ec2_public_ip" que também é exibido após a infraestrutura ser aplicada:
+
+    ssh -i modules/ec2/server-key.pem ec2-user@[ec2_public_ip] 
+
+Exemplo com IP:
+
+    ssh -i modules/ec2/server-key.pem ec2-user@192.163.10.51
+
+
+

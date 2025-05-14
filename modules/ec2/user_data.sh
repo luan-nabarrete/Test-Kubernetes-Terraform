@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "User data executado com sucesso!" >> /tmp/userdata.log
+echo "User data executado com sucesso!!!" >> /tmp/userdata.log
 
 # Install Git and Docker
 yum update -y
