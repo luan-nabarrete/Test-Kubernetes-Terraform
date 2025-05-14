@@ -25,3 +25,11 @@ variable "private_subnet_cidrs" {
 variable "azs" {
   type  = list(string) 
 }
+
+variable "instance_type" {
+  type  = string
+}
+
+variable "meu_ip" {
+  type  = string
+}

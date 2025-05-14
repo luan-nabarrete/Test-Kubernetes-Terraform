@@ -7,3 +7,22 @@ module "vpc" {
   azs                   = var.azs
 }
 
+module "ec2_security_group" {
+  source              = "./modules/security_groups"
+  name                = var.vpc_name
+  vpc_id              = module.vpc.vpc_id
+  meu_ip              = var.meu_ip
+}
+
+module "ec2" {
+  source              = "./modules/ec2"
+  subnet_id           = module.vpc.public_subnet_id
+  sg_id               = module.ec2_security_group.ec2_sg_id
+  instance_type       = var.instance_type
+}
+
+
+output "ec2_public_ip" {
+  description = "EC2 instance public IP"
+  value       = module.ec2.public_ip
+}
