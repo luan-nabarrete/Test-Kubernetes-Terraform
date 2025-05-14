@@ -10,6 +10,6 @@ spec:
   ports:
     - port: {{ .Values.service.port }}
       targetPort: 80
-      nodePort: 31289
+      nodePort: 30080
   selector:
     app: {{ .Release.Name }}

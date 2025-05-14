@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "User data executado" >> /tmp/userdata.log
+echo "User data executado com sucesso!" >> /tmp/userdata.log
 
 # Install Git and Docker
 yum update -y
@@ -30,7 +30,8 @@ git pull origin main
 
 # Create kind cluster
 kind create cluster --name nginx-web-server-cluster --config ./helm/kind-app-nginx-cluster.yaml
-
+mkdir -p /root/.kube
+kind get kubeconfig --name nginx-web-server-cluster > /root/.kube/config
 kubectl config use-context kind-nginx-web-server-cluster
 
 # Install Helm Chart
