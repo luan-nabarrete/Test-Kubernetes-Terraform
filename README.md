@@ -152,12 +152,16 @@ ssh -i modules/ec2/server-key.pem ec2-user@192.163.10.51
 
 O arquivo `deployment.yaml` do Helm chart foi atualizado com as diretivas `resources.requests` e `resources.limits` para controlar o uso de CPU e memória dos containers no cluster Kind.
 
-```yaml
-resources:
-  requests:
-    memory: "64Mi"
-    cpu: "100m"
-  limits:
-    memory: "128Mi"
-    cpu: "250m"
-```
+
+## Atualizações no Helm Chart
+
+As seguintes melhorias foram realizadas no Helm Chart para torná-lo mais flexível e reutilizável:
+
+- Foram adicionadas variáveis no arquivo `helm/values.yaml` para tornar o chart parametrizável, permitindo customizações sem alterar diretamente os manifests.
+- Agora é possível alterar facilmente:
+  - A imagem utilizada (`image.repository` e `image.tag`);
+  - As portas de exposição (`containerPort`, `service.port` e `service.nodePort`);
+  - O número de réplicas;
+  - Os recursos solicitados e limitados (`resources.requests` e `resources.limits`);
+
+Essas variáveis tornam o Helm Chart reutilizável para diferentes aplicações, bastando editar o `values.yaml` ou passar valores com `--set` ou `-f`.
