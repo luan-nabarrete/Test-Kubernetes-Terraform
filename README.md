@@ -1,10 +1,4 @@
-# Deploy de Infraestrutura com Terraform + Kind + NGINX via Helm
-
-Este projeto provisiona uma infraestrutura na AWS usando Terraform, cria uma instância EC2 com Docker e Kind, e realiza o deploy automático de um chart Helm com NGINX dentro de um cluster local.
-
----
-
-##  Pré-requisitos
+# Pré-requisitos
 
 - [Terraform](https://www.terraform.io/downloads.html) instalado  
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) instalado e configurado com credenciais válidas (`~/.aws/credentials`)  
@@ -17,7 +11,7 @@ Este projeto provisiona uma infraestrutura na AWS usando Terraform, cria uma ins
 
 ---
 
-##  Aplicação da infraestrutura e deploy do NGINX
+# Aplicação da infraestrutura e deploy do NGINX
 
 1. Clone este repositório e acesse o diretório:
 
@@ -48,13 +42,13 @@ Este projeto provisiona uma infraestrutura na AWS usando Terraform, cria uma ins
 
 ---
 
-##  O que o `user_data.sh` faz?
+# Aguarde a criação da EC2
 
 O script localizado em `modules/ec2/user_data.sh` será executado automaticamente pela EC2 provisionada e:
 
 1. Instala Docker, Kind, kubectl e Helm  
 2. Cria um cluster Kubernetes local com Kind  
-3. Aplica automaticamente o Helm chart localizado em `helm/` com NGINX  
+3. Aplica automaticamente o Helm chart localizado em `helm/`  
 
 >  **Importante:** esse processo leva aproximadamente 5 minutos após a inicialização da EC2. Aguarde antes de acessar o serviço.
 
