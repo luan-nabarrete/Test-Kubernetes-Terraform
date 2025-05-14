@@ -2,7 +2,7 @@
 
 - [Terraform](https://www.terraform.io/downloads.html) instalado;
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) instalado e configurado com credenciais válidas (`~/.aws/credentials`);  
-- Bucket S3 criado e configurado corretamente no `backend.tf`, assim como região e perfil AWS para acesso ao bucket;  
+- Bucket S3 criado, com o versionamento habilitado e referenciado corretamente no `backend.tf`, assim como região e perfil AWS para acesso ao bucket;  
 - Variáveis ajustadas no arquivo `terraform.tfvars`:  
   - `aws_profile`  # Perfil AWS utilizado para criação dos recursos;
   - `region`  # Região onde os recursos serão criados;
@@ -134,5 +134,14 @@ ssh -i modules/ec2/server-key.pem ec2-user@192.163.10.51
         ├── outputs.tf
         └── variables.tf
 ```
+
+---
+
+##  Correções aplicadas
+
+-  **Adicionado o arquivo `service.yaml`** ao chart Helm para expor a aplicação via serviço Kubernetes.
+-  **Corrigidos erros de indentação** no `deployment.yaml`, que impediam a criação correta do deployment.
+-  A porta configurada para os pods era `8080`, mas a imagem oficial do NGINX expõe a porta `80` — isso foi corrigido para permitir o acesso adequado.
+-  O tipo de serviço original era `ClusterIP`, que não permite acesso externo. Ele foi alterado para `NodePort`, permitindo acesso público via IP da EC2 e porta mapeada (ex: `:30080`).
 
 ---
