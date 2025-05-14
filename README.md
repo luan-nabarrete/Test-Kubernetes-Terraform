@@ -160,7 +160,6 @@ Confirme com `yes` quando solicitado.
 
 ---
 
----
 
 ## Limitação de recursos dos pods
 
