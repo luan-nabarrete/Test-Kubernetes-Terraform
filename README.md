@@ -2,7 +2,7 @@
 
 - [Terraform](https://www.terraform.io/downloads.html) instalado  
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) instalado e configurado com credenciais válidas (`~/.aws/credentials`)  
-- Bucket S3 criado e configurado corretamente no `backend.tf`  
+- Bucket S3 criado e configurado corretamente no `backend.tf`, assim como região e perfil AWS para acesso ao bucket  
 - Variáveis ajustadas no arquivo `terraform.tfvars`:  
   - `aws_profile`  # Perfil AWS utilizado para criação dos recursos
   - `region`  # Região onde os recursos serão criados
