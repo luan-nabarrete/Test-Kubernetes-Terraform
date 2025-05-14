@@ -101,6 +101,20 @@ ssh -i modules/ec2/server-key.pem ec2-user@192.163.10.51
 
 ---
 
+## Deletar os recursos
+
+Para deletar todos recursos criados, execute:
+
+```bash
+terraform destroy
+```
+
+Confirme com `yes` quando solicitado.
+
+---
+
+
+
 ## Estrutura do Projeto
 
 ```text
