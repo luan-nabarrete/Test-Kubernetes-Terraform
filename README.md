@@ -79,6 +79,8 @@ Ou via terminal:
 curl 192.163.10.51:30080
 ```
 
+>  **Obs.:** Os endereços IP acima são fictícios, substituia pelo valor exibido localmente.
+
 ---
 
 ## Acesso SSH à EC2
